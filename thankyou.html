@@ -77,13 +77,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Floating hearts (keeps visual interest) */
-  .heart { position: absolute; font-size: 1.9rem; opacity: .9; z-index: 4; pointer-events: none; }
-  .heart.h1 { left: 8%; bottom: 6%; animation: floatUp 7s linear 0s 1; }
-  .heart.h2 { left: 28%; bottom: 2%; animation: floatUp 8s linear 0.6s 1; }
-  .heart.h3 { left: 52%; bottom: 4%; animation: floatUp 9s linear 1.2s 1; }
-  .heart.h4 { left: 76%; bottom: 3%; animation: floatUp 7.5s linear 0.4s 1; }
-  .heart.h5 { left: 92%; bottom: 7%; animation: floatUp 8.5s linear 0.9s 1; }
+
 
   @keyframes floatUp {
     0% { transform: translateY(0) scale(.9); opacity: 0; }
@@ -95,7 +89,7 @@
   .end-scene-wrap {
     position: absolute;
     bottom: 28px;
-    left: 50%;
+    left: 60%;
     transform: translateX(-50%);
     width: min(1200px, calc(100% - 40px));
     display: flex;
@@ -137,9 +131,9 @@
     position: relative;
     bottom: -100%;
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 2;
     white-space: pre-wrap; /* keeps paragraph breaks */
-    animation: scrollUp 50s linear 1 forwards;
+    animation: scrollUp 47s linear 1 forwards;
   }
 
   @keyframes scrollUp {
@@ -176,7 +170,7 @@
     <p>Every edit, memory, and laugh we shared means the world to me.</p>
     <p>I’m so glad you’re part of my story – my golden hours 🌟</p>
     <p>- With love, Delency 🫶🏻</p>
-    <button class="restart-btn" onclick="goBack()">Replay vid ✨</button>
+    <button class="restart-btn" onclick="goBack()">END! ✨</button>
   </div>
 
   
@@ -209,9 +203,6 @@
         Love you, my Vam. Bye-bye!<br>
         
         I HAPPY VAM. BUT FOR NOW WE GOTTA FOCUS ON OUR LIVES. Ig <br>
-
-
-
       </div>
     </div>
   </div>
@@ -222,10 +213,9 @@
   </audio>
 
 <script>
-  function goBack(){
-    // return to your first page
-    window.location.href = "golden-hours.html";
-  }
+  function goBack() {
+    window.close();
+}
 
   
 </script>
