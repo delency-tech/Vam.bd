@@ -62,6 +62,42 @@ body {
     color: #ff4081;
 }
 
+/* ✅ Mobile responsive fixes */
+@media (max-width: 768px) {
+    body {
+        padding-left: 20px;   /* less padding on mobile */
+        overflow: auto;       /* allow scrolling */
+        justify-content: center;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .card {
+        width: 90%;   /* scale down to fit */
+        max-width: 300px;
+    }
+
+    .video-card {
+        width: 90%;
+        max-width: 250px;
+    }
+
+    .side-anime {
+        width: 100px;
+        height: 180px;
+    }
+
+    #finalPopup {
+        flex-basis: auto;   /* no force full width */
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
 /* Container for card and side animation/video */
 .container {
     display: flex;
