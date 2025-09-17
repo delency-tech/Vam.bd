@@ -35,26 +35,25 @@ body {
     max-width: 280px;
 }
 
-/* Final popup */
+/* Final button popup (beside the card) */
 #finalPopup {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 70%; /* placed beside the card */
+    transform: translateY(-50%);
     background: rgba(255, 240, 245, 0.95);
     border: 2px solid #ff69b4;
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 5px 5px 15px #555;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     display: none;
 }
 
 #finalPopup button {
-    margin-top: 20px;
-    font-size: 1.2em;
-    padding: 10px 20px;
+    font-size: 1em;
+    padding: 8px 16px;
     border-radius: 10px;
     border: 2px solid #ff69b4;
     background: #fff0f5;
@@ -160,9 +159,8 @@ body {
     Click on the card to see the message!
 </div>
 
-<!-- Final popup -->
+<!-- Final popup (button beside card) -->
 <div id="finalPopup">
-    Let's go back to our golden hours! 🌟<br>
     <button id="nextPageBtn">Click 🫶🏻</button>
 </div>
 
@@ -192,22 +190,17 @@ body {
     <div class="side-anime"></div>
 </div>
 
-<!-- Audio -->
-<audio id="birthdaySound" src=""></audio>
-
 <script>
 const popup = document.getElementById('popup');
 const cardContainer = document.getElementById('cardContainer');
-const birthdaySound = document.getElementById('birthdaySound');
 const card = document.getElementById('birthdayCard');
 const finalPopup = document.getElementById('finalPopup');
 const nextPageBtn = document.getElementById('nextPageBtn');
 
 let birthdayCardOpened = false;
 
-// Show first popup and play sound
+// Show first popup
 window.addEventListener('load', () => {
-    birthdaySound.play().catch(() => console.log("Autoplay blocked."));
     popup.style.display = 'block';
     setTimeout(() => {
         popup.style.display = 'none';
