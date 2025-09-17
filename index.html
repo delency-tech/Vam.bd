@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suspicious Link </title>
+<style>
+body {
+    background-color: #c0c0c0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.popup {
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 5px 5px 0px #555;
+    width: 500px;
+    padding: 25px;
+}
+
+.popup-header {
+    background-color: #000080;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.popup-body {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.icon {
+    font-size: 50px;
+    margin-right: 15px;
+    color: #ffcc00;
+}
+
+.message {
+    font-size: 18px;
+}
+
+.popup-buttons {
+    text-align: right;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #e0e0e0;
+    border: 1px solid black;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #d0d0d0;
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-5px, 0); }
+    50% { transform: translate(5px, 0); }
+    75% { transform: translate(-5px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+</style>
+</head>
+<body>
+
+<div class="popup">
+    <div class="popup-header">⚠ System Warning</div>
+    <div class="popup-body">
+        <div class="icon">⚠</div>
+        <div class="message">
+            Unknown application detected.<br>
+            Opening may affect system performance.<br>
+            ⚠️ Are you sure you want to continue? ⚠️
+
+        </div>
+    </div>
+    <div class="popup-buttons">
+        <a href="celebrate.html"><button id="yesBtn">Yes</button></a>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<audio id="errorSound" src="https://www.myinstants.com/media/sounds/windows-error-sound-effect.mp3"></audio>
+
+<script>
+let noCount = 0;
+const noBtn = document.getElementById("noBtn");
+const popup = document.querySelector(".popup");
+const errorSound = document.getElementById("errorSound");
+
+noBtn.addEventListener("click", () => {
+    noCount++;
+    errorSound.currentTime = 0;
+    errorSound.play();
+
+    popup.classList.add("shake");
+    setTimeout(() => popup.classList.remove("shake"), 300);
+
+    if (noCount < 3) {
+        let popupRect = popup.getBoundingClientRect();
+        let x = Math.floor(Math.random() * (popupRect.width - 100));
+        let y = Math.floor(Math.random() * (popupRect.height - 60)) + 50;
+        noBtn.style.position = "absolute";
+        noBtn.style.left = (popupRect.left + x) + "px";
+        noBtn.style.top = (popupRect.top + y) + "px";
+    } else if (noCount < 5) {
+        let x = Math.floor(Math.random() * (window.innerWidth - 100));
+        let y = Math.floor(Math.random() * (window.innerHeight - 60));
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    } else {
+        noBtn.remove();
+    }
+});
+</script>
+
+</body>
+</html>

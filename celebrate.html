@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Celebration! 🎉</title>
+<style>
+body {
+    background: linear-gradient(135deg, #ffe082, #ffab91, #b39ddb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    text-align: center;
+    flex-direction: column;
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 4em;
+    color: #ff4081;
+    text-shadow: 2px 2px 4px #000000;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+button {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0px #d50000;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 10px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 0px #d50000;
+}
+
+/* Popup box style */
+#popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff0f5; /* soft pink */
+    border: 2px solid #ff69b4;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 5px 5px 10px #555;
+    display: none;
+    z-index: 100;
+    text-align: center;
+}
+
+/* Countdown display */
+#countdown {
+    font-size: 6em;
+    color: #ff4081;
+    text-shadow: 2px 2px 4px #000;
+    display: none;
+}
+
+#popup img {
+    width: 120px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #aaa;
+}
+</style>
+</head>
+<body>
+
+<h1>Yay! 🎉 You clicked Yes! 👏</h1>
+<p>Click the button below to celebrate :3 </p>
+
+<!-- Single audio element -->
+<audio id="yaySound" src="yay-funny one.mp3"></audio>
+
+<button id="celebrateBtn">Celebrate 🎉</button>
+
+<!-- Popup box with anime sticker -->
+<div id="popup">
+    <img src="sticker.jpg" alt="Cute Anime">
+    <p>HAHAHAHAHAHAHAHA.....Just kidding! Are you ready to celebrate?</p>
+    <button class="popupBtn">Yes</button>
+    <button class="popupBtn">Okay</button>
+</div>
+
+<!-- Countdown display -->
+<div id="countdown">3</div>
+
+<script>
+const celebrateBtn = document.getElementById('celebrateBtn');
+const yay = document.getElementById('yaySound');
+const popup = document.getElementById('popup');
+const countdownEl = document.getElementById('countdown');
+const popupButtons = document.querySelectorAll('.popupBtn');
+
+celebrateBtn.addEventListener('click', () => {
+    yay.play();
+    yay.onended = () => {
+        popup.style.display = 'block'; // show popup after yay sound
+    };
+});
+
+// When user clicks Yes or Okay
+popupButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        popup.style.display = 'none'; // hide popup
+        countdownEl.style.display = 'block'; // show countdown
+        let count = 3;
+        countdownEl.textContent = count;
+        const interval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                countdownEl.textContent = count;
+            } else {
+                clearInterval(interval);
+                window.location.href = 'birthday.html'; // navigate after countdown
+            }
+        }, 1000); // 1 second per number
+    });
+});
+</script>
+
+</body>
+</html>

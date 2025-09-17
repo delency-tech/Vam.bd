@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Hours Stamps 🎥</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background:#ffc94b;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fullscreen postcard */
+.postcard {
+    position: relative; /* added for next-page button */
+    background: #ffc94b;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 90vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Stamps grid */
+.stamps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+.stamp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stamp-label {
+    margin-top: 5px;
+    font-size: 0.9em;
+    text-align: center;
+    color: #000;
+}
+
+.stamp {
+    width: 200px;
+    height: 170px;
+    border: 3px solid #000;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.stamp:hover {
+    transform: scale(1.05);
+}
+
+/* Address text */
+.address {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+/* Video popup overlay */
+.video-popup {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.video-container {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 95%;
+    max-height: 95%;
+}
+
+video {
+    width: auto;
+    height: 80vh; /* max height for screen */
+    max-width: 95vw; /* don’t overflow horizontally */
+    object-fit: contain; /* keeps aspect ratio */
+    border-radius: 10px;
+}
+
+.bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.side-image {
+    width: 150px; /* adjust size */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Next Page button */
+.next-page {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #751928;
+    color: #ffc94b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.next-page:hover {
+    transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<div class="postcard">
+    <div class="stamps">
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.1.jpg');" data-video="with vam.mp4"></div>
+            <div class="stamp-label">1st edit 🫶🏻</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.2.jpg');" data-video="Roblox-my-golden-knight-vam.mp4"></div>
+            <div class="stamp-label">Oh my my mr.Golden Knight</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.3.jpg');" data-video="vam1.wasted-ML.mp4"></div>
+            <div class="stamp-label">Kneel to ur Queen 👸</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.4.jpg');" data-video="vam2.HOK.mp4"></div>
+            <div class="stamp-label">H.O.K - edit</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.5.jpg');" data-video="vam3.ML-pic-vid.mp4"></div>
+            <div class="stamp-label">First edited memory photo</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.6.jpg');" data-video="vam4.hayagura-trend.mp4"></div>
+            <div class="stamp-label">I got ur back Hayabusa!</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.7.jpg');" data-video="vam5.okaynth-say.haha.mp4"></div>
+            <div class="stamp-label">Okay nth to say abt this one. Just wanna laugh and love it anyway.🤣</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.8.jpg');" data-video="vam6.Bang-Ml.mp4"></div>
+            <div class="stamp-label">BANG!🩻</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.9.jpg');" data-video="vam7.hayagura.mp4"></div>
+            <div class="stamp-label">Haya & Gura trend.</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.10.jpg');" data-video="vam8.hayagura-love-it.mp4"></div>
+            <div class="stamp-label">Unexpected one, Love this 🫶🏽</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.11.jpg');" data-video="vam9.les&gs-gameplay.mp4"></div>
+            <div class="stamp-label">Pro spell - Gusion & Lesley</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.12.jpg');" data-video="vam10.Ang&Joy-gameplay.mp4"></div>
+            <div class="stamp-label">Best Angela & Stooopid Joy</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.13.jpg');" data-video="vam11.Hayagura-gameplay.mp4"></div>
+            <div class="stamp-label">Pro Kagura with Noob Haya</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.14.jpg');" data-video="vam12.ceci&cami.mp4"></div>
+            <div class="stamp-label">Best Ceci and Goddess Cami</div>
+        </div>
+        <div class="stamp-container">
+            <div class="stamp" style="background-image: url('st.15.jpg');" data-video="vam13.Hayagura.1vs1.mp4"></div>
+            <div class="stamp-label">Okay! 😡</div>
+        </div>
+    </div>
+    <div class="bottom-row">
+        <div class="address">
+            Click to watch! 🫶🏻 <br>
+            Click anywhere to close. <br>
+            Double click to zoom in or out.
+        </div>
+        <img src="dooCuteAnime.jpg" alt="Cute stamp" class="side-image">
+    </div>
+
+    <!-- Next Page Button -->
+    <button class="next-page" onclick="goNextPage()">Next Page </button>
+</div>
+
+<!-- Video Popup -->
+<div class="video-popup" id="videoPopup">
+    <div class="video-container">
+        <video id="popupVideo" controls autoplay playsinline></video>
+    </div>
+</div>
+
+<script>
+const stamps = document.querySelectorAll('.stamp');
+const popup = document.getElementById('videoPopup');
+const popupVideo = document.getElementById('popupVideo');
+
+stamps.forEach(stamp => {
+    stamp.addEventListener('click', () => {
+        const videoSrc = stamp.getAttribute('data-video');
+        popupVideo.src = videoSrc;
+        popup.style.display = 'flex';
+        popupVideo.play();
+    });
+});
+
+// Close popup on click outside video
+popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        popup.style.display = 'none';
+        popupVideo.pause();
+        popupVideo.src = '';
+    }
+});
+
+// Next Page function
+function goNextPage() {
+    window.location.href = "thankyou.html";
+}
+</script>
+
+</body>
+</html>

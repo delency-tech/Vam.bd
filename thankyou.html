@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Thank You 🌸</title>
+<style>
+  :root{
+    --card-bg: rgba(0,0,0,0.55);
+    --accent: #751928;
+    --accent-2: #ffc94b;
+  }
+
+  html,body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    font-family: "Segoe UI", Tahoma, system-ui, -apple-system, "Helvetica Neue", Arial;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+
+  /* Background gameplay video */
+  #bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.45) saturate(1.05);
+  }
+
+  /* subtle overlay to improve contrast */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+    z-index: -1;
+  }
+
+  /* Main centered card */
+  .thankyou-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 34px 42px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    max-width: 780px;
+    width: calc(100% - 48px);
+    text-align: center;
+    animation: fadeIn 600ms ease;
+    z-index: 5;
+  }
+  .thankyou-card h1 { margin: 0 0 12px 0; font-size: 1.9rem; }
+  .thankyou-card p { margin: 8px 0; color: #fff; opacity: 0.95; }
+
+  .restart-btn {
+    margin-top: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: var(--accent-2);
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .restart-btn:hover { transform: scale(1.03); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Floating hearts (keeps visual interest) */
+  .heart { position: absolute; font-size: 1.9rem; opacity: .9; z-index: 4; pointer-events: none; }
+  .heart.h1 { left: 8%; bottom: 6%; animation: floatUp 7s linear 0s 1; }
+  .heart.h2 { left: 28%; bottom: 2%; animation: floatUp 8s linear 0.6s 1; }
+  .heart.h3 { left: 52%; bottom: 4%; animation: floatUp 9s linear 1.2s 1; }
+  .heart.h4 { left: 76%; bottom: 3%; animation: floatUp 7.5s linear 0.4s 1; }
+  .heart.h5 { left: 92%; bottom: 7%; animation: floatUp 8.5s linear 0.9s 1; }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(.9); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-40vh) scale(1.15); opacity: 0; }
+  }
+
+  /* End-scene container below the card */
+  .end-scene-wrap {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1200px, calc(100% - 40px));
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none; /* let clicks pass to card/button if overlapped */
+  }
+
+  /* small ending clip */
+  .end-clip {
+    width: 320px;
+    max-width: 38%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    pointer-events: auto;
+  }
+  .end-clip video { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+  /* credits window */
+  .credits {
+    width: 700px;
+    max-width: 60%;
+    height: 260px;
+    overflow: hidden;
+    
+    border-radius: 10px;
+    padding: 10px 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    color: #fff;
+    text-align: left;
+    pointer-events: auto;
+  }
+
+  /* the moving text block */
+  .credits .text {
+    position: relative;
+    bottom: -100%;
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-wrap; /* keeps paragraph breaks */
+    animation: scrollUp 50s linear 1 forwards;
+  }
+
+  @keyframes scrollUp {
+    0%   { bottom: -100%; }
+    100% { bottom: 450%; } /* move fully past top */
+  }
+
+  /* responsive tweaks */
+  @media (max-width: 880px) {
+    .end-clip { width: 38%; }
+    .credits { width: 56%; height: 180px; }
+    .thankyou-card { padding: 26px; max-width: 92%; }
+  }
+  @media (max-width: 560px) {
+    .end-scene-wrap { flex-direction: column; gap: 12px; bottom: 12px; }
+    .end-clip { width: 86vw; }
+    .credits { width: 86vw; height: 140px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- background gameplay -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="vam3.ML-pic-vid.mp4" type="video/mp4">
+    <!-- fallback text -->
+  </video>
+  <div class="overlay"></div>
+
+  <!-- centered thank you card -->
+  <div class="thankyou-card" role="region" aria-label="Thank you message">
+    <h1> Thank You, Vam! </h1>
+    <p>Thank you for spending time with my little surprise!</p>
+    <p>Every edit, memory, and laugh we shared means the world to me.</p>
+    <p>I’m so glad you’re part of my story – my golden hours 🌟</p>
+    <p>- With love, Delency 🫶🏻</p>
+    <button class="restart-btn" onclick="goBack()">Replay vid ✨</button>
+  </div>
+
+  
+
+  <!-- end-scene: small clip + scrolling personal message -->
+  <div class="end-scene-wrap" aria-hidden="false">
+    
+
+    <div class="credits" aria-label="Credits message">
+      <div class="text">
+        Hey Vam, I know we’re not talking or chatting like we used to,
+        but you know it doesn’t matter - you’re always my bestie and my Vam.
+        We’re getting older, and we have to focus on our lives and careers.
+        Even though we used to say like we’d always be here if the other needed someone to talk to,
+        we both know we won’t always reach out.
+        (My POV: You’re facing problems too, and I don’t want to make things worse for you.)<br>
+        
+        Hey Vam, if we ever have a chance to meet in real life, even just once,<br>
+        I really want to meet you - but only if we get that chance.<br>
+        Anyway, Vam, live your life happily and stay healthy.<br>
+        I don’t know exactly what you’re going through right now,<br>
+        since you’re living in another country and doing an adult job, I guess?<br>
+        I just want you to be happy.<br>
+        
+        You know, Vam, in the past, sometimes when you went silent, stopped talking to me,
+        it made me feel like I wasn’t good enough to be by your side as your bestie.
+        I tried to understand what was wrong and why you were doing that,
+        even though I couldn’t fully figure it out.
+        I thought maybe you were facing problems and needed space - 
+        yep, that’s how I saw it.
+        I don’t know exactly how you feel, but now I think: ( I know mb.. js a little dunno)
+        we’re getting older, we can’t talk like we used to,
+        we have more responsibilities, and as besties, we don’t need to talk every day.
+        But Feel free to reach out or talk to me if you want. I will always be your bestie.<br>
+        
+        Hey Vam, I want you to know: even if we don’t talk every day or every month,<br>
+        you’re still my bestie. That’s it.<br>
+        Stay healthy, enjoy your birthday, and have a great time.<br>
+        Love you, my Vam. Bye-bye!<br>
+        I HAPPY VAM. BUT FOR NOW WE GOTTA FOCUS ON OUR LIVES. Ig <br>
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- background song (autoplay may be blocked on some browsers until interaction) -->
+  <audio autoplay loop>
+    <source src="robber.intro.mp3" type="audio/mpeg">
+  </audio>
+
+<script>
+  function goBack(){
+    // return to your first page
+    window.location.href = "golden-hours.html";
+  }
+
+  
+</script>
+</body>
+</html>
