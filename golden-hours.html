@@ -10,7 +10,7 @@ body {
     padding: 0;
     background:#ffc94b;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,13 +18,14 @@ body {
 
 /* Fullscreen postcard */
 .postcard {
-    position: relative; /* added for next-page button */
+    position: relative;
     background: #ffc94b;
-    padding: 40px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     width: 90vw;
-    height: 80vh;
+    max-width: 1200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -93,20 +94,23 @@ body {
 
 video {
     width: auto;
-    height: 80vh; /* max height for screen */
-    max-width: 95vw; /* don’t overflow horizontally */
-    object-fit: contain; /* keeps aspect ratio */
+    height: 80vh;
+    max-width: 95vw;
+    object-fit: contain;
     border-radius: 10px;
 }
 
 .bottom-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    margin-top: 20px;
 }
 
 .side-image {
-    width: 150px; /* adjust size */
+    width: 150px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -130,6 +134,77 @@ video {
 
 .next-page:hover {
     transform: scale(1.05);
+}
+
+/* ✅ Mobile responsiveness */
+@media (max-width: 1024px) {
+    .stamps {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .stamp {
+        width: 150px;
+        height: 130px;
+    }
+
+    .side-image {
+        width: 120px;
+    }
+
+    .address {
+        font-size: 1em;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .stamps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stamp {
+        width: 120px;
+        height: 100px;
+    }
+
+    .side-image {
+        width: 100px;
+    }
+
+    .bottom-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stamps {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stamp {
+        width: 90%;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+
+    .side-image {
+        width: 80%;
+    }
+
+    .address {
+        font-size: 0.95em;
+    }
+
+    .next-page {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
 }
 </style>
 </head>
@@ -177,8 +252,8 @@ video {
             <div class="stamp" style="background-image: url('st.10.jpg');" data-video="vam8.hayagura-love-it.mp4"></div>
             <div class="stamp-label">Unexpected one, Love this 🫶🏽</div>
         </div>
-      
     </div>
+
     <div class="bottom-row">
         <div class="address">
             Click to watch! 🫶🏻 <br>
@@ -189,7 +264,7 @@ video {
     </div>
 
     <!-- Next Page Button -->
-    <button class="next-page" onclick="goNextPage()">Next Page </button>
+    <button class="next-page" onclick="goNextPage()">Next Page</button>
 </div>
 
 <!-- Video Popup -->
