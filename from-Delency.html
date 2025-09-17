@@ -129,11 +129,47 @@ body {
     margin-top: 20px;
 }
 
+/* ✅ Mobile responsive fixes */
+@media (max-width: 768px) {
+    body {
+        padding-left: 20px;   /* less padding on mobile */
+        overflow: auto;       /* allow scrolling */
+        justify-content: center;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .card {
+        width: 90%;   /* scale down to fit */
+        max-width: 300px;
+    }
+
+    .video-card {
+        width: 90%;
+        max-width: 250px;
+    }
+
+    .side-anime {
+        width: 100px;
+        height: 180px;
+    }
+
+    #finalPopup {
+        flex-basis: auto;   /* no force full width */
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
 /* Card back */
 .card-back {
     background: #ffe6f0;
     transform: rotateY(180deg);
-    padding: 20px;        /* slightly smaller padding */
+    padding: 30px;        /* slightly smaller padding */
     color: #ff4081;
     font-size: 0.95em;    /* slightly smaller font */
     text-align: center;
