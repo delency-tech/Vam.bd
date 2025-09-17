@@ -39,6 +39,258 @@ body {
     background: rgba(255, 240, 245, 0.95);
     border: 2px solid #ff69b4;
     border-radius: 15px;
+    padding: 15px;
+    box-shadow: 5px 5px 15px #555;
+    text-align: center;
+    font-size: 1.2em;
+    display: none;
+    z-index: 10;
+}
+
+/* Button style */
+#finalPopup button {
+    font-size: 1em;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 2px solid #ff69b4;
+    background: #fff0f5;
+    cursor: pointer;
+    color: #ff4081;
+}
+
+/* Container for card and side animation */
+.container {
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    align-items: center;    /* center horizontally */
+    gap: 20px;              /* space between card and popup */
+    display: none;
+    max-height: 90vh;       /* allow container to fit screen */
+    overflow-y: auto;       /* scroll if content is taller than screen */
+    padding-bottom: 20px;   /* spacing for mobile */
+}
+
+/* Birthday card container */
+.card {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    perspective: 1200px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Card inner for flip effect */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-style: preserve-3d;
+}
+
+/* Flip on click */
+.card.open .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Card front/back styling */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Card front */
+.card-front {
+    background: #fff0f5;
+    border: 3px solid #ff69b4;
+}
+
+.card-front img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Card back */
+.card-back {
+    background: #ffe6f0;
+    transform: rotateY(180deg);
+    padding: 20px;
+    color: #ff4081;
+    font-size: 0.95em;
+    text-align: center;
+    line-height: 1.4;
+    border: 3px solid #ff69b4;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+/* Side anime */
+.side-anime {
+    width: 120px;
+    height: 220px;
+    background: url('cute-anime.gif') no-repeat center/contain;
+    animation: float 2s infinite alternate;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-15px); }
+}
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+    .card {
+        width: 90%;
+        max-width: 250px;
+    }
+    .card-front img {
+        width: 100%;
+    }
+    #finalPopup {
+        width: 80%;
+    }
+    .side-anime {
+        display: none; /* hide side animation on small screens */
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- First popup -->
+<div id="popup">
+    🎉 Oh dear stooopid Vam! 🥳<br>
+    Click on the card to see the message!
+</div>
+
+<div class="container" id="cardContainer">
+    <!-- Birthday Card -->
+    <div class="card" id="birthdayCard">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="BD.cuteAnime.jpg" alt="Anime Couple">
+                <p>Click to Open 🎂</p>
+            </div>
+            <div class="card-back">
+                Hello Vam! 🎉 <br>
+                I wish u all the best and hope u achieve everything u want in life. Stay healthy… and become a billionaire so u can buy me food! 😏<br>
+                Yk, even tho I’ve known u since grade 9, we weren’t that close back then. I never imagined u would become my precious bestie that I met online. Thank u for all the wonderful times we’ve shared! I’m so happy to have met u, to be ur friend, and to create golden memories together. <br>
+                I really enjoy playing with u - even if we don’t play like we used to, I know u’ll still carry me in the game, right? 😉 HAHA... Just kidding!<br>
+                Please stay healthy, and one day let’s finally meet in person - remember, u still owe me that chocolate cake and two other wishes! :3 <br>
+                And hey, I’m older than u, cutie, so respect me, YOU kid! 😎 <br>
+                Wishing you the happiest birthday today! 🥳🫶🏻 <br>
+                From,<br>
+                Delency<br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final popup under card -->
+    <div id="finalPopup">
+        <button id="nextPageBtn">Click 🫶🏻</button>
+    </div>
+
+    <!-- Side anime -->
+    <div class="side-anime"></div>
+</div>
+
+<script>
+const popup = document.getElementById('popup');
+const cardContainer = document.getElementById('cardContainer');
+const card = document.getElementById('birthdayCard');
+const finalPopup = document.getElementById('finalPopup');
+const nextPageBtn = document.getElementById('nextPageBtn');
+
+let birthdayCardOpened = false;
+
+// Show first popup
+window.addEventListener('load', () => {
+    popup.style.display = 'block';
+    setTimeout(() => {
+        popup.style.display = 'none';
+        cardContainer.style.display = 'flex';
+    }, 3000);
+});
+
+// Flip birthday card on click
+card.addEventListener('click', ()=>{
+    card.classList.toggle('open');
+    birthdayCardOpened = true;
+    showFinalPopup();
+});
+
+// Show final popup
+function showFinalPopup() {
+    if(birthdayCardOpened) {
+        finalPopup.style.display = 'block';
+    }
+}
+
+// Redirect to next page
+nextPageBtn.addEventListener('click', ()=>{
+    window.location.href = "golden-hours.html";
+});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Card for Vam 🎁</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: url('Bd.background.jpg') no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    overflow-x: hidden;
+}
+
+/* First popup */
+#popup {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 240, 245, 0.95);
+    border: 2px solid #ff69b4;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 5px 5px 15px #555;
+    text-align: center;
+    font-size: 1.5em;
+    display: none;
+    max-width: 280px;
+}
+
+/* Final button popup under card */
+#finalPopup {
+    background: rgba(255, 240, 245, 0.95);
+    border: 2px solid #ff69b4;
+    border-radius: 15px;
     padding: 20px;
     box-shadow: 5px 5px 15px #555;
     text-align: center;
