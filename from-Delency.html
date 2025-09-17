@@ -79,14 +79,6 @@ body {
     position: relative;
 }
 
-/* Video card container */
-.video-card {
-    width: 250px;
-    height: 350px;
-    perspective: 1200px;
-    cursor: pointer;
-    position: relative;
-}
 
 /* Card inner for flip effect */
 .card-inner, .video-inner {
@@ -97,26 +89,7 @@ body {
     transform-style: preserve-3d;
 }
 
-/* Flip on click */
-.card.open .card-inner,
-.video-card.open .video-inner {
-    transform: rotateY(180deg);
-}
 
-/* Card front/back styling */
-.card-front, .card-back, .video-front, .video-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    backface-visibility: hidden;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
 
 /* Card front */
 .card-front {
