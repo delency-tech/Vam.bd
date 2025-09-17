@@ -35,20 +35,18 @@ body {
     max-width: 280px;
 }
 
-/* Final button popup (beside the card) */
+/* Final button popup (under the card) */
 #finalPopup {
-    position: absolute;
-    top: 50%;
-    left: 70%; /* placed beside the card */
-    transform: translateY(-50%);
+    margin-top: 20px;   /* space below card */
     background: rgba(255, 240, 245, 0.95);
     border: 2px solid #ff69b4;
     border-radius: 15px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 5px 5px 15px #555;
     text-align: center;
     font-size: 1.2em;
     display: none;
+    align-self: center; /* center under card */
 }
 
 #finalPopup button {
@@ -184,6 +182,11 @@ body {
                 Delency<br>
             </div>
         </div>
+    </div>
+
+    <!-- Final popup (now under the card) -->
+    <div id="finalPopup">
+        <button id="nextPageBtn">Click 🫶🏻</button>
     </div>
 
     <!-- Side anime -->
