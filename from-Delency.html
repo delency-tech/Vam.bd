@@ -35,27 +35,27 @@ body {
     max-width: 280px;
 }
 
-/* Final popup */
+/* Final popup under birthday card */
 #finalPopup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 20px;
     background: rgba(255, 240, 245, 0.95);
     border: 2px solid #ff69b4;
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 5px 5px 15px #555;
     text-align: center;
-    font-size: 1.5em;
-    display: none;
+    font-size: 1.2em;
+    display: none; /* stays hidden until triggered */
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #finalPopup button {
-    margin-top: 20px;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 1em;
+    padding: 8px 16px;
+    border-radius: 8px;
     border: 2px solid #ff69b4;
     background: #fff0f5;
     cursor: pointer;
@@ -68,6 +68,8 @@ body {
     align-items: flex-start;
     gap: 60px;
     display: none;
+    flex-wrap: wrap; /* allow popup to move under cards */
+    justify-content: center;
 }
 
 /* Birthday card container */
@@ -129,49 +131,13 @@ body {
     margin-top: 20px;
 }
 
-/* ✅ Mobile responsive fixes */
-@media (max-width: 768px) {
-    body {
-        padding-left: 20px;   /* less padding on mobile */
-        overflow: auto;       /* allow scrolling */
-        justify-content: center;
-    }
-
-    .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .card {
-        width: 90%;   /* scale down to fit */
-        max-width: 300px;
-    }
-
-    .video-card {
-        width: 90%;
-        max-width: 250px;
-    }
-
-    .side-anime {
-        width: 100px;
-        height: 180px;
-    }
-
-    #finalPopup {
-        flex-basis: auto;   /* no force full width */
-        width: 90%;
-        max-width: 300px;
-    }
-}
-
 /* Card back */
 .card-back {
     background: #ffe6f0;
     transform: rotateY(180deg);
-    padding: 30px;        /* slightly smaller padding */
+    padding: 30px;
     color: #ff4081;
-    font-size: 0.95em;    /* slightly smaller font */
+    font-size: 0.95em;
     text-align: center;
     line-height: 1.4;
     border: 3px solid #ff69b4;
@@ -179,7 +145,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow-y: auto;     /* allow scrolling if text is too long */
+    overflow-y: auto;
     word-wrap: break-word;
 }
 
@@ -220,6 +186,41 @@ body {
     border-radius: 15px;
     object-fit: cover;
 }
+
+/* ✅ Mobile responsive fixes */
+@media (max-width: 768px) {
+    body {
+        padding-left: 20px;
+        overflow: auto;
+        justify-content: center;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .card {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .video-card {
+        width: 90%;
+        max-width: 250px;
+    }
+
+    .side-anime {
+        width: 100px;
+        height: 180px;
+    }
+
+    #finalPopup {
+        width: 90%;
+        max-width: 280px;
+    }
+}
 </style>
 </head>
 <body>
@@ -228,12 +229,6 @@ body {
 <div id="popup">
     🎉 Oh dear stooopid Vam! 🥳<br>
     Click on the card to see the message!
-</div>
-
-<!-- Final popup -->
-<div id="finalPopup">
-    Let's go back to our golden hours! 🌟<br>
-    <button id="nextPageBtn">Click 🫶🏻</button>
 </div>
 
 <div class="container" id="cardContainer">
@@ -245,24 +240,22 @@ body {
                 <p>Click to Open 🎂</p>
             </div>
             <div class="card-back">
-               
              Hello Vam! 🎉 <br>
-
              I wish u all the best and hope u achieve everything u want in life. Stay healthy… and become a billionaire so u can buy me food! 😏<br>
-
              Yk, even tho I’ve known u since grade 9, we weren’t that close back then. I never imagined u would become my precious bestie that I met online. Thank u for all the wonderful times we’ve shared! I’m so happy to have met u, to be ur friend, and to create golden memories together. <br>
-
              I really enjoy playing with u - even if we don’t play like we used to, I know u’ll still carry me in the game, right? 😉 Just kidding! I'll carry u mhmm... I'm the best Kagura yeah!<br>
-
              Please stay healthy, and one day let’s finally meet in person - remember, u still owe me that chocolate cake and two other wishes! :3 <br>
-
              And hey, I’m older than u, cutie, so respect me, you kid! 😎 <br>
-
              Wishing you the happiest birthday today! 🥳🫶🏻 <br>
-
              From,<br>
              Delency<br>
             </div>
+        </div>
+
+        <!-- ✅ Final popup under the birthday card -->
+        <div id="finalPopup">
+            Let's go back to our golden hours! 🌟<br>
+            <button id="nextPageBtn">Click 🫶🏻</button>
         </div>
     </div>
 
@@ -341,9 +334,4 @@ function showFinalPopupIfBothOpened() {
 
 // Redirect to next page
 nextPageBtn.addEventListener('click', ()=>{
-    window.location.href = "golden-hours.html";
-});
-</script>
-
-</body>
-</html>
+    window.location.href = "
