@@ -1,313 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Card for Vam 🎁</title>
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    background: url('Bd.background.jpg') no-repeat center/cover;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    overflow: hidden;
-    padding-left: 80px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Card for Vam 🎁</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('Bd.background.jpg') no-repeat center/cover;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow: hidden;
+      padding-left: 80px;
+    }
 
-/* First popup */
-#popup {
-    position: absolute;
-    top: 40%;
-    left: 15%;
-    transform: translateY(-50%);
-    background: rgba(255, 240, 245, 0.95);
-    border: 2px solid #ff69b4;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 5px 5px 15px #555;
-    text-align: center;
-    font-size: 1.5em;
-    display: none;
-    max-width: 280px;
-}
+    /* First popup */
+    #popup {
+      position: absolute;
+      top: 40%;
+      left: 15%;
+      transform: translateY(-50%);
+      background: rgba(255, 240, 245, 0.95);
+      border: 2px solid #ff69b4;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 5px 5px 15px #555;
+      text-align: center;
+      font-size: 1.5em;
+      display: none;
+      max-width: 280px;
+    }
 
-/* Final popup */
-#finalPopup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 240, 245, 0.95);
-    border: 2px solid #ff69b4;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 5px 5px 15px #555;
-    text-align: center;
-    font-size: 1.5em;
-    display: none;
-}
+    /* Final popup */
+    #finalPopup {
+      margin-top: 30px;   /* space below the cards */
+      background: rgba(255, 240, 245, 0.95);
+      border: 2px solid #ff69b4;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 5px 5px 15px #555;
+      text-align: center;
+      font-size: 1.3em;
+      display: none;
+      flex: 1 100%;   /* make it appear on new row */
+    }
 
-#finalPopup button {
-    margin-button: 20px;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 2px solid #ff69b4;
-    background: #fff0f5;
-    cursor: pointer;
-    color: #ff4081;
-}
+    #finalPopup button {
+      margin-top: 15px;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid #ff69b4;
+      background: #fff0f5;
+      cursor: pointer;
+      color: #ff4081;
+    }
 
-/* Container for card and side animation/video */
-.container {
-    display: flex;
-    align-items: flex-start;
-    gap: 60px;
-    display: none;
-}
+    /* Container for card and side animation/video */
+    .container {
+      display: flex;
+      align-items: flex-start;
+      gap: 60px;
+      display: none;
+      flex-wrap: wrap; /* allow popup to move below cards */
+      justify-content: center;
+    }
 
-/* Birthday card container */
-.card {
-    width: 300px;
-    height: 450px;
-    perspective: 1200px;
-    cursor: pointer;
-    position: relative;
-}
+    /* Birthday card container */
+    .card {
+      width: 300px;
+      height: 450px;
+      perspective: 1200px;
+      cursor: pointer;
+      position: relative;
+    }
 
-/* Video card container */
-.video-card {
-    width: 250px;
-    height: 350px;
-    perspective: 1200px;
-    cursor: pointer;
-    position: relative;
-}
+    /* Video card container */
+    .video-card {
+      width: 250px;
+      height: 350px;
+      perspective: 1200px;
+      cursor: pointer;
+      position: relative;
+    }
 
-/* Card inner for flip effect */
-.card-inner, .video-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    transform-style: preserve-3d;
-}
+    /* Card inner for flip effect */
+    .card-inner, .video-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      transform-style: preserve-3d;
+    }
 
-/* Flip on click */
-.card.open .card-inner,
-.video-card.open .video-inner {
-    transform: rotateY(180deg);
-}
+    /* Flip on click */
+    .card.open .card-inner, .video-card.open .video-inner {
+      transform: rotateY(180deg);
+    }
 
-/* Card front/back styling */
-.card-front, .card-back, .video-front, .video-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    backface-visibility: hidden;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
+    /* Card front/back styling */
+    .card-front, .card-back, .video-front, .video-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
 
-/* Card front */
-.card-front {
-    background: #fff0f5;
-    border: 3px solid #ff69b4;
-}
+    /* Card front */
+    .card-front {
+      background: #fff0f5;
+      border: 3px solid #ff69b4;
+    }
+    .card-front img {
+      width: 200px;
+      margin-top: 20px;
+    }
 
-.card-front img {
-    width: 200px;
-    margin-top: 20px;
-}
+    /* Card back */
+    .card-back {
+      background: #ffe6f0;
+      transform: rotateY(180deg);
+      padding: 20px;
+      color: #ff4081;
+      font-size: 0.95em;
+      text-align: center;
+      line-height: 1.4;
+      border: 3px solid #ff69b4;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+      word-wrap: break-word;
+    }
 
-/* Card back */
-.card-back {
-    background: #ffe6f0;
-    transform: rotateY(180deg);
-    padding: 20px;        /* slightly smaller padding */
-    color: #ff4081;
-    font-size: 0.95em;    /* slightly smaller font */
-    text-align: center;
-    line-height: 1.4;
-    border: 3px solid #ff69b4;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: auto;     /* allow scrolling if text is too long */
-    word-wrap: break-word;
-}
+    /* Side anime */
+    .side-anime {
+      width: 120px;
+      height: 220px;
+      background: url('cute-anime.gif') no-repeat center/contain;
+      animation: float 2s infinite alternate;
+    }
 
-/* Side anime */
-.side-anime {
-    width: 120px;
-    height: 220px;
-    background: url('cute-anime.gif') no-repeat center/contain;
-    animation: float 2s infinite alternate;
-}
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-15px); }
+    }
 
-/* Floating animation */
-@keyframes float {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-15px); }
-}
-
-/* Video card front/back */
-.video-front {
-    background: #fff0f5;
-    border: 3px solid #ff69b4;
-    font-size: 1.2em;
-    text-align: center;
-    padding: 20px;
-}
-
-.video-back {
-    background: #fff0f5;
-    border: 3px solid #ff69b4;
-    transform: rotateY(180deg);
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.video-back video {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-}
-</style>
+    /* Video card front/back */
+    .video-front {
+      background: #fff0f5;
+      border: 3px solid #ff69b4;
+      font-size: 1.2em;
+      text-align: center;
+      padding: 20px;
+    }
+    .video-back {
+      background: #fff0f5;
+      border: 3px solid #ff69b4;
+      transform: rotateY(180deg);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .video-back video {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
 
-<!-- First popup -->
-<div id="popup">
+  <!-- First popup -->
+  <div id="popup">
     🎉 Oh dear stooopid Vam! 🥳<br>
     Click on the card to see the message!
-</div>
+  </div>
 
-<!-- Final popup -->
-<div id="finalPopup">
-    Let's go back to our golden hours! 🌟<br>
-    <button id="nextPageBtn">Click 🫶🏻</button>
-</div>
-
-<div class="container" id="cardContainer">
+  <div class="container" id="cardContainer">
     <!-- Birthday Card -->
     <div class="card" id="birthdayCard">
-        <div class="card-inner">
-            <div class="card-front">
-                <img src="BD.cuteAnime.jpg" alt="Anime Couple">
-                <p>Click to Open 🎂</p>
-            </div>
-            <div class="card-back">
-               
-             Hello Vam! 🎉 <br>
-
-             I wish u all the best and hope u achieve everything u want in life. Stay healthy… and become a billionaire so u can buy me food! 😏<br>
-
-             Yk, even tho I’ve known u since grade 9, we weren’t that close back then. I never imagined u would become my precious bestie that I met online. Thank u for all the wonderful times we’ve shared! I’m so happy to have met u, to be ur friend, and to create golden memories together. <br>
-
-             I really enjoy playing with u - even if we don’t play like we used to, I know u’ll still carry me in the game, right? 😉 HAHA... Just kidding!<br>
-
-             Please stay healthy, and one day let’s finally meet in person - remember, u still owe me that chocolate cake and two other wishes! :3 <br>
-
-             And hey, I’m older than u, cutie, so respect me, YOU kid! 😎 <br>
-
-             Wishing you the happiest birthday today! 🥳🫶🏻 <br>
-
-             From,<br>
-             Delency<br>
-            </div>
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="BD.cuteAnime.jpg" alt="Anime Couple">
+          <p>Click to Open 🎂</p>
         </div>
+        <div class="card-back">
+          Hello Vam! 🎉 <br>
+          I wish u all the best and hope u achieve everything u want in life. Stay healthy… and become a billionaire so u can buy me food! 😏<br>
+          Yk, even tho I’ve known u since grade 9, we weren’t that close back then. I never imagined u would become my precious bestie that I met online. Thank u for all the wonderful times we’ve shared! I’m so happy to have met u, to be ur friend, and to create golden memories together. <br>
+          I really enjoy playing with u - even if we don’t play like we used to, I know u’ll still carry me in the game, right? 😉 HAHA... Just kidding!<br>
+          Please stay healthy, and one day let’s finally meet in person - remember, u still owe me that chocolate cake and two other wishes! :3 <br>
+          And hey, I’m older than u, cutie, so respect me, YOU kid! 😎 <br>
+          Wishing you the happiest birthday today! 🥳🫶🏻 <br>
+          From,<br>
+          Delency<br>
+        </div>
+      </div>
     </div>
 
     <!-- Video Card -->
     <div class="video-card" id="videoCard">
-        <div class="video-inner">
-            <div class="video-front">
-                🎊 Sing with me! 🐱<br>
-                Click to play
-            </div>
-            <div class="video-back">
-                <video id="danceVideo" loop>
-                    <source src="Bd.vid.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+      <div class="video-inner">
+        <div class="video-front">
+          🎊 Sing with me! 🐱<br>
+          Click to play
         </div>
+        <div class="video-back">
+          <video id="danceVideo" loop>
+            <source src="Bd.vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </div>
 
     <!-- Side anime -->
     <div class="side-anime"></div>
-</div>
 
-<!-- Audio -->
-<audio id="birthdaySound" src=""></audio>
+    <!-- Final popup (moved inside container) -->
+    <div id="finalPopup">
+      Let's go back to our golden hours! 🌟<br>
+      <button id="nextPageBtn">Click 🫶🏻</button>
+    </div>
+  </div>
 
-<script>
-const popup = document.getElementById('popup');
-const cardContainer = document.getElementById('cardContainer');
-const birthdaySound = document.getElementById('birthdaySound');
-const card = document.getElementById('birthdayCard');
-const videoCard = document.getElementById('videoCard');
-const video = document.getElementById('danceVideo');
-const finalPopup = document.getElementById('finalPopup');
-const nextPageBtn = document.getElementById('nextPageBtn');
+  <!-- Audio -->
+  <audio id="birthdaySound" src=""></audio>
 
-let birthdayCardOpened = false;
-let videoCardOpened = false;
+  <script>
+    const popup = document.getElementById('popup');
+    const cardContainer = document.getElementById('cardContainer');
+    const birthdaySound = document.getElementById('birthdaySound');
+    const card = document.getElementById('birthdayCard');
+    const videoCard = document.getElementById('videoCard');
+    const video = document.getElementById('danceVideo');
+    const finalPopup = document.getElementById('finalPopup');
+    const nextPageBtn = document.getElementById('nextPageBtn');
 
-// Show first popup and play sound
-window.addEventListener('load', () => {
-    birthdaySound.play().catch(() => console.log("Autoplay blocked."));
-    popup.style.display = 'block';
-    setTimeout(() => {
+    let birthdayCardOpened = false;
+    let videoCardOpened = false;
+
+    // Show first popup and play sound
+    window.addEventListener('load', () => {
+      birthdaySound.play().catch(() => console.log("Autoplay blocked."));
+      popup.style.display = 'block';
+      setTimeout(() => {
         popup.style.display = 'none';
         cardContainer.style.display = 'flex';
-    }, 3000);
-});
+      }, 3000);
+    });
 
-// Flip birthday card on click
-card.addEventListener('click', ()=>{
-    card.classList.toggle('open');
-    birthdayCardOpened = true;
-    showFinalPopupIfBothOpened();
-});
+    // Flip birthday card on click
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+      birthdayCardOpened = true;
+      showFinalPopupIfBothOpened();
+    });
 
-// Flip video card and autoplay sound on click
-videoCard.addEventListener('click', ()=>{
-    videoCard.classList.toggle('open');
-    if(videoCard.classList.contains('open')) {
+    // Flip video card and autoplay sound on click
+    videoCard.addEventListener('click', () => {
+      videoCard.classList.toggle('open');
+      if (videoCard.classList.contains('open')) {
         video.play().catch(() => console.log("User interaction required to play sound"));
-    } else {
+      } else {
         video.pause();
         video.currentTime = 0;
-    }
-    videoCardOpened = true;
-    showFinalPopupIfBothOpened();
-});
+      }
+      videoCardOpened = true;
+      showFinalPopupIfBothOpened();
+    });
 
-// Show final popup only if both cards are opened
-function showFinalPopupIfBothOpened() {
-    if(birthdayCardOpened && videoCardOpened) {
+    // Show final popup only if both cards are opened
+    function showFinalPopupIfBothOpened() {
+      if (birthdayCardOpened && videoCardOpened) {
         finalPopup.style.display = 'block';
+      }
     }
-}
 
-// Redirect to next page
-nextPageBtn.addEventListener('click', ()=>{
-    window.location.href = "golden-hours.html";
-});
-</script>
-
+    // Redirect to next page
+    nextPageBtn.addEventListener('click', () => {
+      window.location.href = "golden-hours.html";
+    });
+  </script>
 </body>
 </html>
