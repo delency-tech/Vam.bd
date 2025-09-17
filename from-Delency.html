@@ -65,12 +65,16 @@ body {
     align-items: center;    /* center horizontally */
     gap: 20px;              /* space between card and popup */
     display: none;
+    max-height: 90vh;       /* allow container to fit screen */
+    overflow-y: auto;       /* scroll if content is taller than screen */
+    padding-bottom: 20px;   /* spacing for mobile */
 }
 
 /* Birthday card container */
 .card {
-    width: 300px;
-    height: 450px;
+    width: 80%;
+    max-width: 300px;
+    height: auto;
     perspective: 1200px;
     cursor: pointer;
     position: relative;
@@ -112,7 +116,8 @@ body {
 }
 
 .card-front img {
-    width: 200px;
+    width: 100%;
+    height: auto;
     margin-top: 20px;
 }
 
@@ -151,11 +156,11 @@ body {
 /* Responsive for mobile */
 @media (max-width: 480px) {
     .card {
-        width: 250px;
-        height: 400px;
+        width: 90%;
+        max-width: 250px;
     }
     .card-front img {
-        width: 170px;
+        width: 100%;
     }
     #finalPopup {
         width: 80%;
