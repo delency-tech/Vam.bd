@@ -62,7 +62,7 @@ body {
     color: #ff4081;
 }
 
-/* Container for card and side animation/video */
+/* Container for card and side animation */
 .container {
     display: flex;
     align-items: flex-start;
@@ -79,9 +79,8 @@ body {
     position: relative;
 }
 
-
 /* Card inner for flip effect */
-.card-inner, .video-inner {
+.card-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -89,7 +88,25 @@ body {
     transform-style: preserve-3d;
 }
 
+/* Flip on click */
+.card.open .card-inner {
+    transform: rotateY(180deg);
+}
 
+/* Card front/back styling */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
 
 /* Card front */
 .card-front {
@@ -133,30 +150,6 @@ body {
     0% { transform: translateY(0); }
     100% { transform: translateY(-15px); }
 }
-
-/* Video card front/back */
-.video-front {
-    background: #fff0f5;
-    border: 3px solid #ff69b4;
-    font-size: 1.2em;
-    text-align: center;
-    padding: 20px;
-}
-
-.video-back {
-    background: #fff0f5;
-    border: 3px solid #ff69b4;
-    transform: rotateY(180deg);
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.video-back video {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-}
 </style>
 </head>
 <body>
@@ -182,39 +175,15 @@ body {
                 <p>Click to Open 🎂</p>
             </div>
             <div class="card-back">
-               
-             Hello Vam! 🎉 <br>
-
-             I wish u all the best and hope u achieve everything u want in life. Stay healthy… and become a billionaire so u can buy me food! 😏<br>
-
-             Yk, even tho I’ve known u since grade 9, we weren’t that close back then. I never imagined u would become my precious bestie that I met online. Thank u for all the wonderful times we’ve shared! I’m so happy to have met u, to be ur friend, and to create golden memories together. <br>
-
-             I really enjoy playing with u - even if we don’t play like we used to, I know u’ll still carry me in the game, right? 😉 HAHA... Just kidding!<br>
-
-             Please stay healthy, and one day let’s finally meet in person - remember, u still owe me that chocolate cake and two other wishes! :3 <br>
-
-             And hey, I’m older than u, cutie, so respect me, YOU kid! 😎 <br>
-
-             Wishing you the happiest birthday today! 🥳🫶🏻 <br>
-
-             From,<br>
-             Delency<br>
-            </div>
-        </div>
-    </div>
-
-    <!-- Video Card -->
-    <div class="video-card" id="videoCard">
-        <div class="video-inner">
-            <div class="video-front">
-                🎊 Sing with me! 🐱<br>
-                Click to play
-            </div>
-            <div class="video-back">
-                <video id="danceVideo" loop>
-                    <source src="Bd.vid.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                Hello Vam! 🎉 <br>
+                I wish u all the best and hope u achieve everything u want in life. Stay healthy… and become a billionaire so u can buy me food! 😏<br>
+                Yk, even tho I’ve known u since grade 9, we weren’t that close back then. I never imagined u would become my precious bestie that I met online. Thank u for all the wonderful times we’ve shared! I’m so happy to have met u, to be ur friend, and to create golden memories together. <br>
+                I really enjoy playing with u - even if we don’t play like we used to, I know u’ll still carry me in the game, right? 😉 HAHA... Just kidding!<br>
+                Please stay healthy, and one day let’s finally meet in person - remember, u still owe me that chocolate cake and two other wishes! :3 <br>
+                And hey, I’m older than u, cutie, so respect me, YOU kid! 😎 <br>
+                Wishing you the happiest birthday today! 🥳🫶🏻 <br>
+                From,<br>
+                Delency<br>
             </div>
         </div>
     </div>
@@ -231,13 +200,10 @@ const popup = document.getElementById('popup');
 const cardContainer = document.getElementById('cardContainer');
 const birthdaySound = document.getElementById('birthdaySound');
 const card = document.getElementById('birthdayCard');
-const videoCard = document.getElementById('videoCard');
-const video = document.getElementById('danceVideo');
 const finalPopup = document.getElementById('finalPopup');
 const nextPageBtn = document.getElementById('nextPageBtn');
 
 let birthdayCardOpened = false;
-let videoCardOpened = false;
 
 // Show first popup and play sound
 window.addEventListener('load', () => {
@@ -253,25 +219,12 @@ window.addEventListener('load', () => {
 card.addEventListener('click', ()=>{
     card.classList.toggle('open');
     birthdayCardOpened = true;
-    showFinalPopupIfBothOpened();
+    showFinalPopup();
 });
 
-// Flip video card and autoplay sound on click
-videoCard.addEventListener('click', ()=>{
-    videoCard.classList.toggle('open');
-    if(videoCard.classList.contains('open')) {
-        video.play().catch(() => console.log("User interaction required to play sound"));
-    } else {
-        video.pause();
-        video.currentTime = 0;
-    }
-    videoCardOpened = true;
-    showFinalPopupIfBothOpened();
-});
-
-// Show final popup only if both cards are opened
-function showFinalPopupIfBothOpened() {
-    if(birthdayCardOpened && videoCardOpened) {
+// Show final popup
+function showFinalPopup() {
+    if(birthdayCardOpened) {
         finalPopup.style.display = 'block';
     }
 }
